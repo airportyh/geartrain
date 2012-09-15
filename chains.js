@@ -11,6 +11,7 @@
     }
 
     var readFile = function(){
+        
         function nodeReadFile(path, callback){
             require('fs').readFile(path, function(err, contents){
                 callback(err, contents && String(contents))
@@ -115,47 +116,50 @@
         })
     }
 
-    function webMain(){
+    var main = function(){
 
-        function execModule(module, code, callback){
-            var file = resolveModulePath(module)
-            code += '\n//@ sourceURL=' + file
-            console.log('loader: executing ' + file)
-            window.eval(code)
-            modules[module] = true
-            callback()
-        }
+        function webMain(){
 
-        window.Loader = {
-            load: function(module){
-                readComponentsInfo(function(){
-                    loadModule(module, execModule, function(){})
-                })
+            function execModule(module, code, callback){
+                var file = resolveModulePath(module)
+                code += '\n//@ sourceURL=' + file
+                console.log('loader: executing ' + file)
+                window.eval(code)
+                modules[module] = true
+                callback()
             }
+
+            window.Loader = {
+                load: function(module){
+                    readComponentsInfo(function(){
+                        loadModule(module, execModule, function(){})
+                    })
+                }
+            }
+
         }
 
-    }
+        function nodeMain(){
+            
+            var fileContents = []
+            function addToFileContents(module, code, callback){
+                fileContents.push(code)
+                modules[module] = true
+                callback()
+            }
 
-    function nodeMain(){
-        
-        var fileContents = []
-        function addToFileContents(module, code, callback){
-            fileContents.push(code)
-            modules[module] = true
-            callback()
-        }
-
-        readComponentsInfo(function(){
-            loadModule(process.argv[2], addToFileContents, function(){
-                var contents = fileContents.join('\n;\n')
-                contents = ';(function(){\n' + contents + '}());'
-                console.log(contents)
+            readComponentsInfo(function(){
+                loadModule(process.argv[2], addToFileContents, function(){
+                    var contents = fileContents.join('\n;\n')
+                    contents = ';(function(){\n' + contents + '}());'
+                    console.log(contents)
+                })
             })
-        })
 
-    }
+        }
 
-    var main = isNode ? nodeMain : webMain
+        return isNode ? nodeMain: webMain
+    }()
 
     main()
 
