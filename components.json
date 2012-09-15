@@ -1,0 +1,19 @@
+{
+  "backbone": {
+    "source": {
+      "main": "components/backbone/backbone.js"
+    },
+    "dependencies": {
+      "underscore": {
+        "source": {
+          "main": "components/underscore/underscore.js"
+        }
+      }
+    }
+  },
+  "underscore": {
+    "source": {
+      "main": "components/underscore/underscore.js"
+    }
+  }
+}

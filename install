@@ -1,0 +1,2 @@
+bower install $1
+bower list --map > components.json
