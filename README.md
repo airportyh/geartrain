@@ -38,16 +38,16 @@ Using the Compiler
 
 The compiler takes an entry point as parameter, let's say if `main.js` is the entry point, you would do
 
-    node compiler.js main
+    node chains.js main
 
 This will appends all dependencies of main.js in the correct order and output the resulting bundled .js file to `STDOUT`.
 
 Using the Loader
 ----------------
 
-In your html page, first include the `loader.js`
+In your html page, first include the `chains.js`
 
-    <script src="loader.js"></script>
+    <script src="chains.js"></script>
 
 Then, use `Loader.load(entrypoint)` to load the entry point file you want.
 
