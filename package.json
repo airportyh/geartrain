@@ -6,7 +6,6 @@
     "example": "examples"
   },
   "dependencies": {
-    "async": "~0.1.22",
     "commander": "~1.0.4"
   },
   "devDependencies": {},
