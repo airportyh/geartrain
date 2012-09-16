@@ -11,6 +11,11 @@
       }
     }
   },
+  "jquery": {
+    "source": {
+      "main": "components/jquery/jquery.js"
+    }
+  },
   "underscore": {
     "source": {
       "main": "components/underscore/underscore.js"

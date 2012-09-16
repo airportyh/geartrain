@@ -1,0 +1,9 @@
+TODO
+====
+
+
+1. if no commands specified you want to show the usage.
+3. distribute it in bower.
+5. Node loader.
+4. Implement the wrap options.
+2. infinite loop detection.

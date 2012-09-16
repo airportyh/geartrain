@@ -1,0 +1,2 @@
+mkdir -p dist
+./bin/chains build webmain > dist/chains.js

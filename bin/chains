@@ -1,2 +1,50 @@
 #! /usr/bin/env node
-require(__dirname + '/../chains')
+
+var chains = require(__dirname + '/../src/core')
+var program = require('commander')
+var exec = require('child_process').exec
+var path = require('path')
+
+program.version('0.0.1')
+.option('-c, --config <config file>', 
+    'specify the location of the config file', 'chains.json')
+
+program
+    .command('build [entry_point]')
+    .description('Build a program starting from an entry point.')
+    .action(build)
+
+program
+    .command('install [library]')
+    .description('Install a library via Bower.')
+    .action(install)
+
+program.parse(process.argv)
+
+function build(entryPoint){
+
+    var fileContents = []
+    function addToFileContents(module, code, callback){
+        fileContents.push(code)
+        callback()
+    }
+
+    chains.initialize(program.config, function(){
+        chains.loadModule(entryPoint, addToFileContents, function(){
+            var contents = fileContents.join('\n;\n')
+            contents = ';(function(){\n' + contents + '}());'
+            console.log(contents)
+        })
+    })
+}
+
+function install(library){
+    exec('bower install ' + library + '; bower list --map > components.json', 
+        {
+            cwd: path.dirname(program.config)
+        },
+        function(err, stdout, stderr){
+            if (stdout) console.log(stdout)
+            if (stderr) console.error(stderr)
+        })
+}
