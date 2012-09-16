@@ -1,9 +1,7 @@
 TODO
 ====
 
-2. add documentation about the config file
-3. add documentation about the command line usage
-1. distribute it in bower.
+1. try to fix the bower package.
 4. script tag data-main attribute and data-config-file attribute.
 2. Node loader.
 3. Implement the wrap options.
