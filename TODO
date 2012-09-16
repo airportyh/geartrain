@@ -1,8 +1,10 @@
 TODO
 ====
 
-1. distribute it in npm.
-3. distribute it in bower.
-5. Node loader.
-4. Implement the wrap options.
-2. infinite loop detection.
+2. add documentation about the config file
+3. add documentation about the command line usage
+1. distribute it in bower.
+4. script tag data-main attribute and data-config-file attribute.
+2. Node loader.
+3. Implement the wrap options.
+4. infinite loop detection.
