@@ -17,7 +17,7 @@ To specify a dependency to another Javascript file `otherfile.js`, use the requi
 
     //= require otherfile
 
-`otherfile.js` is then looked for in the same directory as the current file. You can use slashes `/` to walk subdirectories.
+`otherfile.js` is then looked for in the same directory as the current file. You can use slashes `/` to walk subdirectories. The require directive syntax is the same as the one used in [Sprockets](https://github.com/sstephenson/sprockets#the-directive-processor).
 
 Integration with Bower
 ----------------------
