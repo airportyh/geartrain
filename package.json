@@ -1,0 +1,32 @@
+{
+  "name": "chains",
+  "version": "0.0.1",
+  "description": "Simple Javascript dependency management",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "async": "~0.1.22",
+    "commander": "~1.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/airportyh/chains.git"
+  },
+  "keywords": [
+    "dependency_management",
+    "loader",
+    "concatenate",
+    "build",
+    "tools"
+  ],
+  "bin": {
+    "chains": "bin/chains"
+  },
+  "author": "Toby Ho",
+  "license": "MIT"
+}

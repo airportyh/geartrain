@@ -1,12 +1,14 @@
 Chains: Simple Javascript Dependency Management
 ===============================================
 
-Chains is a Javascript dependency management system for people who want dependency management but don't want a full-on module system like AMD or CommonJS. To put it another way, it's for people who think global variables are *just fine* for tying things together. It is heavily influenced by [Sprockets](https://github.com/sstephenson/sprockets) and [Bower](https://github.com/twitter/bower) - as a matter of fact it is built on top of Bower and the [require directive syntax](https://github.com/sstephenson/sprockets#the-directive-processor) is Sprockets compatible.
+Chains is a Javascript dependency management system for people who want the benefits of dependency management but don't want a full-on module system like AMD or CommonJS. To put it another way, it's for people who are okay with using global variables for tying things together. To put it yet another way, it's for people who are okay with going to the [public toilet](http://www.sitepoint.com/google-closure-how-not-to-write-javascript/) once in a while.
+
+Chains is heavily influenced by [Sprockets](https://github.com/sstephenson/sprockets), [Bower](https://github.com/twitter/bower), and [Require.js](http://requirejs.org/).
 
 What's in it
 ------------
 
-In Require.js fashion, Chains comes packed with a **compiler** and an **async loader**. The compiler takes an entry point .js file, resolves all its dependencies and spits out a concatenated source file with everything your app needs. The async loader is a .js file that you include in your web page. You specify the entry point .js file you want to load using `Loader.load('entryPoint.js')`, and it will  asynchronously resolve and load all the dependencies for you.
+In Require.js fashion, Chains comes packed with a **compiler** and an **async loader**. The compiler takes as argument an entry point .js file, resolves all its dependencies and spits out a concatenated source file with everything your app needs. The async loader is a .js file that you include in your web page. You specify the entry point .js file you want to load using `Loader.load('entryPoint.js')`, and it will  asynchronously resolve and load all the dependencies for you.
 
 Require Directive
 -----------------
@@ -22,14 +24,9 @@ Integration with Bower
 
 If you want to use [Bower](https://github.com/twitter/bower) to install packages for you, first install Bower. When installing, instead of using `bower install jquery`, use
 
-    ./install jquery
+    chains install jquery
 
-This `install` script just has two lines
-
-    bower install $1
-    bower list --map > components.json
-
-First in uses Bower to install the package, then it writes the dependency map gotten from `bower list --map` to the file `components.json` - this is what both the compiler and loader use to resolve dependencies that are provided by Bower. Now you can use a require directive to include jquery
+Here is what the `install` command does: first it uses Bower to install the package; then it writes the dependency map gotten from `bower list --map` to the file `components.json` - this is what both the compiler and loader use to resolve dependencies that are provided by Bower. Now you can use a require directive to include jquery
 
     //= require jquery
 
@@ -38,7 +35,7 @@ Using the Compiler
 
 The compiler takes an entry point as parameter, let's say if `main.js` is the entry point, you would do
 
-    node chains.js main
+    chains build main
 
 This will appends all dependencies of main.js in the correct order and output the resulting bundled .js file to `STDOUT`.
 

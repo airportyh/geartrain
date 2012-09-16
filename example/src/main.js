@@ -1,5 +1,5 @@
 //= require backbone
-
+//= require hello
 var bob = new Backbone.Model({
     age: 15
     , name: 'Bob'
