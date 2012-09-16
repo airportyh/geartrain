@@ -42,7 +42,7 @@ This will appends all dependencies of main.js in the correct order and output th
 Using the Loader
 ----------------
 
-In your html page, first include the `chains.js`
+In your html page, first include the `chains.js` - you can find this in the `dist` folder, which can be re-built by running `bin/build`.
 
     <script src="chains.js"></script>
 
