@@ -11,7 +11,7 @@ function execModule(module, code, callback){
 
 window.Loader = {
     load: function(module, configFile){
-        configFile = configFile || 'chains.json'
+        configFile = configFile || 'geartrain.json'
         initialize(configFile, function(){
             loadModule(module, execModule, function(){})
         })

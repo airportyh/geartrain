@@ -1,8 +1,7 @@
 TODO
 ====
 
-
-1. if no commands specified you want to show the usage.
+1. distribute it in npm.
 3. distribute it in bower.
 5. Node loader.
 4. Implement the wrap options.

@@ -1,2 +1,2 @@
 mkdir -p dist
-./bin/chains build webmain > dist/chains.js
+./bin/geartrain build webmain > dist/geartrain.js

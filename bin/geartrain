@@ -1,13 +1,13 @@
 #! /usr/bin/env node
 
-var chains = require(__dirname + '/../src/core')
+var geartrain = require(__dirname + '/../src/core')
 var program = require('commander')
 var exec = require('child_process').exec
 var path = require('path')
 
 program.version(require(__dirname + '/../package').version)
 .option('-c, --config <config file>', 
-    'specify the location of the config file', 'chains.json')
+    'specify the location of the config file', 'geartrain.json')
 
 program
     .command('build [entry_point]')
@@ -33,8 +33,8 @@ function build(entryPoint){
         callback()
     }
 
-    chains.initialize(program.config, function(){
-        chains.loadModule(entryPoint, addToFileContents, function(){
+    geartrain.initialize(program.config, function(){
+        geartrain.loadModule(entryPoint, addToFileContents, function(){
             var contents = fileContents.join('\n;\n')
             contents = ';(function(){\n' + contents + '}());'
             console.log(contents)

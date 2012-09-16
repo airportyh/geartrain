@@ -1,5 +1,5 @@
 {
-  "name": "chains",
+  "name": "geartrain",
   "version": "0.0.1",
   "description": "Simple Javascript dependency management",
   "directories": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/airportyh/chains.git"
+    "url": "git://github.com/airportyh/geartrain.git"
   },
   "keywords": [
     "dependency_management",
@@ -24,7 +24,7 @@
     "tools"
   ],
   "bin": {
-    "chains": "bin/chains"
+    "geartrain": "bin/geartrain"
   },
   "author": "Toby Ho",
   "license": "MIT"

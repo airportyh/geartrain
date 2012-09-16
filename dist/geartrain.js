@@ -213,7 +213,6 @@ function readConfig(configFile, callback){
     config.baseDir = dirname(configFile)
     readFile(configFile, function(err, code){
         if (err){
-            //console.log("Can't find chains.json")
             callback()
             return
         }
@@ -228,7 +227,6 @@ function readComponentsInfo(callback){
     var componentJsonPath = joinPath(config.baseDir, 'components.json')
     readFile(componentJsonPath, function(err, code){
         if (err){
-            //console.log("Can't find components.json")
             callback()
             return
         }
@@ -264,7 +262,7 @@ function execModule(module, code, callback){
 
 window.Loader = {
     load: function(module, configFile){
-        configFile = configFile || 'chains.json'
+        configFile = configFile || 'geartrain.json'
         initialize(configFile, function(){
             loadModule(module, execModule, function(){})
         })

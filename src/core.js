@@ -212,7 +212,6 @@ function readConfig(configFile, callback){
     config.baseDir = dirname(configFile)
     readFile(configFile, function(err, code){
         if (err){
-            //console.log("Can't find chains.json")
             callback()
             return
         }
@@ -227,7 +226,6 @@ function readComponentsInfo(callback){
     var componentJsonPath = joinPath(config.baseDir, 'components.json')
     readFile(componentJsonPath, function(err, code){
         if (err){
-            //console.log("Can't find components.json")
             callback()
             return
         }
