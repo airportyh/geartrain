@@ -164,7 +164,7 @@ function getDependencies(module, callback){
             var deps = []
             for (var i = lines.length; i--;){
                 var line = lines[i]
-                var match = line.match(/^\/\/= require ([a-zA-Z0-9]+)/)
+                var match = line.match(/^\/\/= require ([a-zA-Z0-9_]+)/)
                 if (match){
                     deps.push(match[1])
                 }
