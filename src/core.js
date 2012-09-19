@@ -99,6 +99,7 @@ var config = { // Default values
     , baseDir: './'
     , srcDir: './'
     , componentsParentDir: './'
+    , paths: {}
 }
 
 var keys = Object.keys || function(obj){
@@ -138,6 +139,13 @@ function resolveModulePath(module){
         return joinPath(config.baseDir, config.componentsParentDir, 
             componentsInfo[module].source.main)
     }else{
+        // check for paths
+        for (var path in config.paths){
+            if (module.indexOf(path) === 0){
+                return joinPath(config.baseDir, config.paths[path], module.substring(path.length) + '.js')
+            }
+        }
+
         return joinPath(config.baseDir, config.srcDir, module + '.js')
     }
 }
@@ -164,7 +172,7 @@ function getDependencies(module, callback){
             var deps = []
             for (var i = lines.length; i--;){
                 var line = lines[i]
-                var match = line.match(/^\/\/= require ([a-zA-Z0-9_]+)/)
+                var match = line.match(/^\/\/= require ([a-zA-Z0-9_\/]+)/)
                 if (match){
                     deps.push(match[1])
                 }

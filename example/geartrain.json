@@ -1,3 +1,6 @@
 {
-    "srcDir": "src"
+    "srcDir": "src",
+    "paths": {
+        "tests": "tests"
+    }
 }
