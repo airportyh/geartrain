@@ -9,7 +9,7 @@ function execModule(module, code, callback){
     callback()
 }
 
-window.Loader = {
+window.Geartrain = {
     load: function(module, configFile, callback){
         configFile = configFile || 'geartrain.json'
         initialize(configFile, function(){
