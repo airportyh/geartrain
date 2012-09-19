@@ -143,7 +143,7 @@ function resolveModulePath(module){
         // check for paths
         for (var path in config.paths){
             if (module.indexOf(path) === 0){
-                return joinPath(config.baseDir, config.paths, module.substring(path.length) + '.js')
+                return joinPath(config.baseDir, config.paths[path], module.substring(path.length) + '.js')
             }
         }
 
