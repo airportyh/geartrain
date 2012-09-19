@@ -1,6 +1,8 @@
 TODO
 ====
 
+1. Update README with the new features.
+2. Flexible ways to wrap modules? 
 1. try to fix the bower package.
 4. script tag data-main attribute and data-config-file attribute.
 2. Node loader.

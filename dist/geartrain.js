@@ -1,4 +1,14 @@
 ;(function(){
+
+function filter(arr, cond, context){
+    var ret = []
+    for (var i = 0, len = arr.length; i < len; i++){
+        var item = arr[i]
+        if (cond.call(context, item, i, arr))
+            ret.push(item)
+    }
+    return ret
+}
 // *******************************************************************
 // The 4 functions here are stolen from the `path` module of the 
 // standard library of Node.js. I am putting them here because they are 
@@ -47,7 +57,7 @@ var normalize = function(path) {
       trailingSlash = path.substr(-1) === '/';
 
   // Normalize the path
-  path = normalizeArray(path.split('/').filter(function(p) {
+  path = normalizeArray(filter(path.split('/'), function(p) {
     return !!p;
   }), !isAbsolute).join('/');
 
@@ -63,7 +73,7 @@ var normalize = function(path) {
 
 var join = function() {
   var paths = Array.prototype.slice.call(arguments, 0);
-  return normalize(paths.filter(function(p, index) {
+  return normalize(filter(paths, function(p, index) {
     return p && typeof p === 'string';
   }).join('/'));
 };
@@ -259,12 +269,43 @@ if (typeof exports !== 'undefined'){
 ;
 //= require core
 
+// globalEval from <http://perfectionkills.com/global-eval-what-are-the-options/>
+var globalEval = (function() {
+
+  var isIndirectEvalGlobal = (function(original, Object) {
+    try {
+      // Does `Object` resolve to a local variable, or to a global, built-in `Object`,
+      // reference to which we passed as a first argument?
+      return (1,eval)('Object') === original;
+    }
+    catch(err) {
+      // if indirect eval errors out (as allowed per ES3), then just bail out with `false`
+      return false;
+    }
+  })(Object, 123);
+
+  if (isIndirectEvalGlobal) {
+
+    // if indirect eval executes code globally, use it
+    return function(expression) {
+      return (1,eval)(expression);
+    };
+  }
+  else if (typeof window.execScript !== 'undefined') {
+
+    // if `window.execScript exists`, use it
+    return function(expression) {
+      return window.execScript(expression);
+    };
+  }
+
+  // otherwise, globalEval is `undefined` since nothing is returned
+})();
+
 function execModule(module, code, callback){
     var file = resolveModulePath(module)
     code += '\n//@ sourceURL=' + file
-    //console.log('loader: executing ' + file)
-    window.eval(code)
-    
+    globalEval(code)
     callback()
 }
 
