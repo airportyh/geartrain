@@ -65,10 +65,10 @@ In your html page, first include the `geartrain.js` - you can find this in the `
 
     <script src="geartrain.js"></script>
 
-Then, use `Loader.load(entrypoint)` to load the entry point file you want.
+Then, use `Geartrain.load(entrypoint)` to load the entry point file you want.
 
     <script>
-    Loader.load('main.js');
+    Geartrain.load('main.js');
     </script>
 
 It will asynchronously load all its dependencies. *Note: you must serve the files over HTTP, local files won't work.*

@@ -10,10 +10,14 @@ function execModule(module, code, callback){
 }
 
 window.Loader = {
-    load: function(module, configFile){
+    load: function(module, configFile, callback){
         configFile = configFile || 'geartrain.json'
         initialize(configFile, function(){
-            loadModule(module, execModule, function(){})
+            if (module instanceof Array){
+                loadModules(module, execModule, callback || function(){})
+            }else{
+                loadModule(module, execModule, callback || function(){})
+            }
         })
     }
 }
