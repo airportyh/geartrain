@@ -303,10 +303,38 @@ var globalEval = (function() {
 })();
 
 function execModule(module, code, callback){
+
+    function loadScript(url, callback){
+        function cb(){
+            if (callback) callback()
+        }
+        
+        var script = document.createElement('script')
+        if (script.readyState){
+            script.onreadystatechange = function(){
+                var rs = script.readyState
+                if (rs === 'loaded' || rs === 'complete'){
+                    script.onreadystatechange = null
+                    cb()
+                }
+            }
+        }else{
+            script.onload = function(){
+                cb()
+            }
+        }
+        script.src = url
+        document.getElementsByTagName('head')[0]
+            .appendChild(script)
+    }
+
     var file = resolveModulePath(module)
+    loadScript(file, callback)
+    /*
     code += '\n//@ sourceURL=' + file
     globalEval(code)
     callback()
+    */
 }
 
 window.Geartrain = {
