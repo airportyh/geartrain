@@ -34,7 +34,7 @@ var globalEval = (function() {
 })();
 
 function execModule(module, code, callback){
-
+    /*
     function loadScript(url, callback){
         function cb(){
             if (callback) callback()
@@ -61,11 +61,11 @@ function execModule(module, code, callback){
 
     var file = resolveModulePath(module)
     loadScript(file, callback)
-    /*
+    */
     code += '\n//@ sourceURL=' + file
     globalEval(code)
     callback()
-    */
+    
 }
 
 window.Geartrain = {
